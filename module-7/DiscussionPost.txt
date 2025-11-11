@@ -1,0 +1,20 @@
+Explain what a view is, how they work, and when they should be used. Take a look at the movie tables. Create at least one view that would be useful, explain why it would be helpful, and provide the SQL for that view.
+
+	According to W3Schools, the definition of a view is as follows: "In SQL, a view is a virtual table based on the result-set of an SQL statement." My definition of views is as follows, though: "Views can be used to query data from one or more tables with zero or more modifications to the data returned." At the same time, you can return all of the columns from a single table. You should send the SQL query directly to the table from which you want data if you want the columns without modifications from the table. 
+	A view should be used to provide particular viewpoints into the data. A view can involve selecting data from multiple databases and tables to provide a single, usable return of data for the user. Views prevent the application from having to query the database multiple times to retrieve all the necessary data. For instance, you may have a table for users and separate tables for access permissions. Instead of having your code query the database multiple times to get the data it needs. It can instead hit a view to get a list of users and their access permissions in the data. Since a view provides a look into the database without requiring knowledge of everything about it, it also allows you to change where a view obtains data without needing to update potentially hundreds of applications. For example, let's say you move the customer table to a customer database, instead of having to update 100's of applications on where to pull customer information from. Suppose you had a view set up that all applications used to get customer information. Then, you have to update the single view.
+	Another reason to use views and/or procedures is that they allow you to optimize the SQL statements for faster response times. 
+	Please note: This is theoretical information on how to retrieve data from your database effectively. In reality, having a single view for all applications to get "customer" data is asking to get stuck in red tape to add a single column. The risk is that if you make a mistake, you will suddenly break over 100 applications. So I would not recommend doing this in real life.
+
+As an example:
+	You could create a view that returns movie names and their genres. This view may be helpful if you have multiple applications that need to query a movie to determine its assigned genre. In reality, you would return more than just the movie name and genre name for this view. You could also include the release date and the film ID in the return data to make it more useful for data analysis.
+
+Here is the SQL statement to create the view:
+
+USE `movies`;
+CREATE  OR REPLACE VIEW `film_genres` AS 
+SELECT film_name, genre_name
+FROM film
+Join genre on genre.genre_id = film.genre_id;
+
+MySQL CREATE VIEW, REPLACE VIEW, DROP VIEW Statements. (n.d.). Www.w3schools.com. https://www.w3schools.com/mysql/mysql_view.asp
+‌
