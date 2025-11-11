@@ -6,6 +6,8 @@ import dotenv # to use .env file
 import os
 from dotenv import dotenv_values
 
+#Was having issues with relative path settings when running locally.
+# Did this to figure out what was wrong
 current_directory = os.getcwd()
 #using our .env file
 secrets = dotenv_values(current_directory + "\\.env")
